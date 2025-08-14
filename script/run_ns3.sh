@@ -1,5 +1,5 @@
 cd ns-3-dev || exit
 
-    ./ns3 run scratch/zenoh_test --no-build
+    ./ns3 run scratch/zenoh --no-build
 
 cd -
