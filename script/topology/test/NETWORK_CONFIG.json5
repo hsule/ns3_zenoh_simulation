@@ -6,8 +6,8 @@
         clean_first: false
     },
 
-    volume: "/home/leann/repos/ns3_zenoh_simulation/zenoh/target/x86_64-unknown-linux-musl/fast/zenohd",
-    // volume: "/home/leann/repos/ns3_zenoh_simulation/zenoh",
+    // volume: "/home/leann/repos/ns3_zenoh_simulation/zenoh/target/x86_64-unknown-linux-musl/fast/zenohd",
+    volume: "/home/leann/repos/ns3_zenoh_simulation/zenoh",
 
     routers: {
         "1": {
@@ -25,7 +25,6 @@
             ],
         },
         "3": {
-            docker: true,
             zid: {set: true, value: "c16a6fbfd2e362029d2ff8012bbe3bc1"},
             listen_endpoints: [
                 "tcp/10.0.2.3:8003", // 0
