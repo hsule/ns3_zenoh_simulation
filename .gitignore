@@ -43,6 +43,9 @@
 # venv
 ns3env
 
-# topology
-script/topology/*
-!script/topology/test/*
+#
+.vscode
+
+# # topology
+# script/topology/*
+# !script/topology/test/*
