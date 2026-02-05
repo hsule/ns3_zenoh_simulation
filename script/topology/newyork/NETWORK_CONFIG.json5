@@ -1,0 +1,337 @@
+{
+    // SNDlib newyork topology — 16 nodes, 49 links
+    experiment: "newyork",
+
+    docker_image: {
+        tag: "eclipse/zenoh:1.4.0",
+        clean_first: false
+    },
+
+    volume: "../zenoh",
+
+    nodes: {
+        // Node 0 (N1) — 8 interfaces
+        "0": {
+            zid: {set: true, value: "a1b2c3d4e5f6071829a0b1c2d3e4f001"},
+            listen_endpoints: [
+                "tcp/10.0.1.1:8000",   // 0 - L1 to N2
+                "tcp/10.0.2.1:8000",   // 1 - L2 to N5
+                "tcp/10.0.3.1:8000",   // 2 - L3 to N6
+                "tcp/10.0.4.1:8000",   // 3 - L4 to N7
+                "tcp/10.0.5.1:8000",   // 4 - L5 to N8
+                "tcp/10.0.6.1:8000",   // 5 - L6 to N12
+                "tcp/10.0.7.1:8000",   // 6 - L7 to N13
+                "tcp/10.0.8.1:8000",   // 7 - L8 to N15
+            ],
+        },
+        // Node 1 (N2) — 6 interfaces
+        "1": {
+            zid: {set: true, value: "b2c3d4e5f60718293a1b0c2d3e4f5002"},
+            listen_endpoints: [
+                "tcp/10.0.1.2:8001",   // 0 - L1 to N1
+                "tcp/10.0.9.2:8001",   // 1 - L9 to N5
+                "tcp/10.0.10.2:8001",  // 2 - L10 to N6
+                "tcp/10.0.11.2:8001",  // 3 - L11 to N12
+                "tcp/10.0.12.2:8001",  // 4 - L12 to N13
+                "tcp/10.0.13.2:8001",  // 5 - L13 to N15
+            ],
+        },
+        // Node 2 (N3) — 5 interfaces
+        "2": {
+            zid: {set: true, value: "c3d4e5f6071829a03b1c2d0e3f4a5003"},
+            listen_endpoints: [
+                "tcp/10.0.14.3:8002",  // 0 - L14 to N4
+                "tcp/10.0.15.3:8002",  // 1 - L15 to N6
+                "tcp/10.0.16.3:8002",  // 2 - L16 to N7
+                "tcp/10.0.17.3:8002",  // 3 - L17 to N8
+                "tcp/10.0.18.3:8002",  // 4 - L18 to N11
+            ],
+        },
+        // Node 3 (N4) — 6 interfaces
+        "3": {
+            zid: {set: true, value: "d4e5f60718293a0b1c2d3e4f5a6b7004"},
+            listen_endpoints: [
+                "tcp/10.0.14.4:8003",  // 0 - L14 to N3
+                "tcp/10.0.19.4:8003",  // 1 - L19 to N7
+                "tcp/10.0.20.4:8003",  // 2 - L20 to N8
+                "tcp/10.0.21.4:8003",  // 3 - L21 to N9
+                "tcp/10.0.22.4:8003",  // 4 - L22 to N10
+                "tcp/10.0.23.4:8003",  // 5 - L23 to N11
+            ],
+        },
+        // Node 4 (N5) — 5 interfaces
+        "4": {
+            zid: {set: true, value: "e5f6071829a03b1c2d3e4f5a6b7c8005"},
+            listen_endpoints: [
+                "tcp/10.0.2.5:8004",   // 0 - L2 to N1
+                "tcp/10.0.9.5:8004",   // 1 - L9 to N2
+                "tcp/10.0.24.5:8004",  // 2 - L24 to N12
+                "tcp/10.0.25.5:8004",  // 3 - L25 to N13
+                "tcp/10.0.26.5:8004",  // 4 - L26 to N15
+            ],
+        },
+        // Node 5 (N6) — 5 interfaces
+        "5": {
+            zid: {set: true, value: "f60718293a0b1c2d3e4f5a6b7c8d9006"},
+            listen_endpoints: [
+                "tcp/10.0.3.6:8005",   // 0 - L3 to N1
+                "tcp/10.0.10.6:8005",  // 1 - L10 to N2
+                "tcp/10.0.15.6:8005",  // 2 - L15 to N3
+                "tcp/10.0.27.6:8005",  // 3 - L27 to N7
+                "tcp/10.0.28.6:8005",  // 4 - L28 to N8
+            ],
+        },
+        // Node 6 (N7) — 11 interfaces
+        "6": {
+            zid: {set: true, value: "a12b3c4d5e6f708192a3b4c5d6e7f007"},
+            listen_endpoints: [
+                "tcp/10.0.4.7:8006",   // 0  - L4 to N1
+                "tcp/10.0.16.7:8006",  // 1  - L16 to N3
+                "tcp/10.0.19.7:8006",  // 2  - L19 to N4
+                "tcp/10.0.27.7:8006",  // 3  - L27 to N6
+                "tcp/10.0.29.7:8006",  // 4  - L29 to N8
+                "tcp/10.0.30.7:8006",  // 5  - L30 to N9
+                "tcp/10.0.31.7:8006",  // 6  - L31 to N10
+                "tcp/10.0.32.7:8006",  // 7  - L32 to N12
+                "tcp/10.0.33.7:8006",  // 8  - L33 to N13
+                "tcp/10.0.34.7:8006",  // 9  - L34 to N14
+                "tcp/10.0.35.7:8006",  // 10 - L35 to N15
+                // -- added --
+                "tcp/10.0.51.7:8006",  // 11 - L51 to sub node
+            ],
+        },
+        // Node 7 (N8) — 5 interfaces
+        "7": {
+            zid: {set: true, value: "b23c4d5e6f7081923a4b5c6d7e8f9008"},
+            listen_endpoints: [
+                "tcp/10.0.5.8:8007",   // 0 - L5 to N1
+                "tcp/10.0.17.8:8007",  // 1 - L17 to N3
+                "tcp/10.0.20.8:8007",  // 2 - L20 to N4
+                "tcp/10.0.28.8:8007",  // 3 - L28 to N6
+                "tcp/10.0.29.8:8007",  // 4 - L29 to N7
+            ],
+        },
+        // Node 8 (N9) — 7 interfaces
+        "8": {
+            zid: {set: true, value: "c34d5e6f70819a2b3c4d5e6f7a8b9009"},
+            listen_endpoints: [
+                "tcp/10.0.21.9:8008",  // 0 - L21 to N4
+                "tcp/10.0.30.9:8008",  // 1 - L30 to N7
+                "tcp/10.0.36.9:8008",  // 2 - L36 to N10
+                "tcp/10.0.37.9:8008",  // 3 - L37 to N11
+                "tcp/10.0.38.9:8008",  // 4 - L38 to N14
+                "tcp/10.0.39.9:8008",  // 5 - L39 to N15
+                "tcp/10.0.40.9:8008",  // 6 - L40 to N16
+            ],
+        },
+        // Node 9 (N10) — 6 interfaces
+        "9": {
+            zid: {set: true, value: "d45e6f70819a2b3c4d5e6f7a8b9c000a"},
+            listen_endpoints: [
+                "tcp/10.0.22.10:8009", // 0 - L22 to N4
+                "tcp/10.0.31.10:8009", // 1 - L31 to N7
+                "tcp/10.0.36.10:8009", // 2 - L36 to N9
+                "tcp/10.0.41.10:8009", // 3 - L41 to N11
+                "tcp/10.0.42.10:8009", // 4 - L42 to N14
+                "tcp/10.0.43.10:8009", // 5 - L43 to N15
+            ],
+        },
+        // Node 10 (N11) — 4 interfaces
+        "10": {
+            zid: {set: true, value: "e56f70819a2b3c4d5e6f7a8b9c0d100b"},
+            listen_endpoints: [
+                "tcp/10.0.18.11:8010", // 0 - L18 to N3
+                "tcp/10.0.23.11:8010", // 1 - L23 to N4
+                "tcp/10.0.37.11:8010", // 2 - L37 to N9
+                "tcp/10.0.41.11:8010", // 3 - L41 to N10
+            ],
+        },
+        // Node 11 (N12) — 6 interfaces
+        "11": {
+            zid: {set: true, value: "f670819a2b3c4d5e6f7a8b9c0d1e200c"},
+            listen_endpoints: [
+                "tcp/10.0.6.12:8011",  // 0 - L6 to N1
+                "tcp/10.0.11.12:8011", // 1 - L11 to N2
+                "tcp/10.0.24.12:8011", // 2 - L24 to N5
+                "tcp/10.0.32.12:8011", // 3 - L32 to N7
+                "tcp/10.0.44.12:8011", // 4 - L44 to N13
+                "tcp/10.0.45.12:8011", // 5 - L45 to N15
+            ],
+        },
+        // Node 12 (N13) — 7 interfaces
+        "12": {
+            zid: {set: true, value: "a081972b3c4d5e6f7a8b9c0d1e2f300d"},
+            listen_endpoints: [
+                "tcp/10.0.7.13:8012",  // 0 - L7 to N1
+                "tcp/10.0.12.13:8012", // 1 - L12 to N2
+                "tcp/10.0.25.13:8012", // 2 - L25 to N5
+                "tcp/10.0.33.13:8012", // 3 - L33 to N7
+                "tcp/10.0.44.13:8012", // 4 - L44 to N12
+                "tcp/10.0.46.13:8012", // 5 - L46 to N14
+                "tcp/10.0.47.13:8012", // 6 - L47 to N15
+            ],
+        },
+        // Node 13 (N14) — 6 interfaces
+        "13": {
+            zid: {set: true, value: "a1982b3c4d5e6f7a8b9c0d1e2f3a400e"},
+            listen_endpoints: [
+                "tcp/10.0.34.14:8013", // 0 - L34 to N7
+                "tcp/10.0.38.14:8013", // 1 - L38 to N9
+                "tcp/10.0.42.14:8013", // 2 - L42 to N10
+                "tcp/10.0.46.14:8013", // 3 - L46 to N13
+                "tcp/10.0.48.14:8013", // 4 - L48 to N15
+                "tcp/10.0.49.14:8013", // 5 - L49 to N16
+                // -- added --
+                "tcp/10.0.50.14:8013", // 6 - L50 to pub node
+            ],
+        },
+        // Node 14 (N15) — 9 interfaces
+        "14": {
+            zid: {set: true, value: "a92b3c4d5e6f7a8b9c0d1e2f3a4b500f"},
+            listen_endpoints: [
+                "tcp/10.0.8.15:8014",  // 0 - L8 to N1
+                "tcp/10.0.13.15:8014", // 1 - L13 to N2
+                "tcp/10.0.26.15:8014", // 2 - L26 to N5
+                "tcp/10.0.35.15:8014", // 3 - L35 to N7
+                "tcp/10.0.39.15:8014", // 4 - L39 to N9
+                "tcp/10.0.43.15:8014", // 5 - L43 to N10
+                "tcp/10.0.45.15:8014", // 6 - L45 to N12
+                "tcp/10.0.47.15:8014", // 7 - L47 to N13
+                "tcp/10.0.48.15:8014", // 8 - L48 to N14
+            ],
+        },
+        // Node 15 (N16) — 2 interfaces
+        "15": {
+            zid: {set: true, value: "a2b3c4d5e6f7a8b9c0d1e2f3a4b5c010"},
+            listen_endpoints: [
+                "tcp/10.0.40.16:8015", // 0 - L40 to N9
+                "tcp/10.0.49.16:8015", // 1 - L49 to N14
+            ],
+        },
+        // =============================================
+        // Added nodes (not from SNDlib)
+        // =============================================
+        // Node 16 — pub, connected to N14 (node 13)
+        "16": {
+            role: "pub",
+            zid: {set: true, value: "b3c4d5e6f7a8b9c0d1e2f3a4b5c6d011"},
+            listen_endpoints: [
+                "tcp/10.0.50.17:8016", // 0 - L50 to N14
+            ],
+        },
+        // Node 17 — sub, connected to N7 (node 6)
+        "17": {
+            role: "sub",
+            zid: {set: true, value: "c4d5e6f7a8b9c0d1e2f3a4b5c6d7e012"},
+            listen_endpoints: [
+                "tcp/10.0.51.18:8017", // 0 - L51 to N7
+            ],
+        },
+    },
+
+    links: [
+        // L1:  N1  <-> N2
+        { a: "0",  a_idx: 0,  b: "1",  b_idx: 0, cap: 3 },
+        // L2:  N1  <-> N5
+        { a: "0",  a_idx: 1,  b: "4",  b_idx: 0, cap: 3 },
+        // L3:  N1  <-> N6
+        { a: "0",  a_idx: 2,  b: "5",  b_idx: 0, cap: 3 },
+        // L4:  N1  <-> N7
+        { a: "0",  a_idx: 3,  b: "6",  b_idx: 0, cap: 3 },
+        // L5:  N1  <-> N8
+        { a: "0",  a_idx: 4,  b: "7",  b_idx: 0, cap: 3 },
+        // L6:  N1  <-> N12
+        { a: "0",  a_idx: 5,  b: "11", b_idx: 0, cap: 3 },
+        // L7:  N1  <-> N13
+        { a: "0",  a_idx: 6,  b: "12", b_idx: 0, cap: 3 },
+        // L8:  N1  <-> N15
+        { a: "0",  a_idx: 7,  b: "14", b_idx: 0, cap: 3 },
+        // L9:  N2  <-> N5
+        { a: "1",  a_idx: 1,  b: "4",  b_idx: 1, cap: 3 },
+        // L10: N2  <-> N6
+        { a: "1",  a_idx: 2,  b: "5",  b_idx: 1, cap: 3 },
+        // L11: N2  <-> N12
+        { a: "1",  a_idx: 3,  b: "11", b_idx: 1, cap: 3 },
+        // L12: N2  <-> N13
+        { a: "1",  a_idx: 4,  b: "12", b_idx: 1, cap: 3 },
+        // L13: N2  <-> N15
+        { a: "1",  a_idx: 5,  b: "14", b_idx: 1, cap: 3 },
+        // L14: N3  <-> N4
+        { a: "2",  a_idx: 0,  b: "3",  b_idx: 0, cap: 3 },
+        // L15: N3  <-> N6
+        { a: "2",  a_idx: 1,  b: "5",  b_idx: 2, cap: 3 },
+        // L16: N3  <-> N7
+        { a: "2",  a_idx: 2,  b: "6",  b_idx: 1, cap: 3 },
+        // L17: N3  <-> N8
+        { a: "2",  a_idx: 3,  b: "7",  b_idx: 1, cap: 3 },
+        // L18: N3  <-> N11
+        { a: "2",  a_idx: 4,  b: "10", b_idx: 0, cap: 3 },
+        // L19: N4  <-> N7
+        { a: "3",  a_idx: 1,  b: "6",  b_idx: 2, cap: 3 },
+        // L20: N4  <-> N8
+        { a: "3",  a_idx: 2,  b: "7",  b_idx: 2, cap: 3 },
+        // L21: N4  <-> N9
+        { a: "3",  a_idx: 3,  b: "8",  b_idx: 0, cap: 3 },
+        // L22: N4  <-> N10
+        { a: "3",  a_idx: 4,  b: "9",  b_idx: 0, cap: 3 },
+        // L23: N4  <-> N11
+        { a: "3",  a_idx: 5,  b: "10", b_idx: 1, cap: 3 },
+        // L24: N5  <-> N12
+        { a: "4",  a_idx: 2,  b: "11", b_idx: 2, cap: 3 },
+        // L25: N5  <-> N13
+        { a: "4",  a_idx: 3,  b: "12", b_idx: 2, cap: 3 },
+        // L26: N5  <-> N15
+        { a: "4",  a_idx: 4,  b: "14", b_idx: 2, cap: 3 },
+        // L27: N6  <-> N7
+        { a: "5",  a_idx: 3,  b: "6",  b_idx: 3, cap: 3 },
+        // L28: N6  <-> N8
+        { a: "5",  a_idx: 4,  b: "7",  b_idx: 3, cap: 3 },
+        // L29: N7  <-> N8
+        { a: "6",  a_idx: 4,  b: "7",  b_idx: 4, cap: 3 },
+        // L30: N7  <-> N9
+        { a: "6",  a_idx: 5,  b: "8",  b_idx: 1, cap: 3 },
+        // L31: N7  <-> N10
+        { a: "6",  a_idx: 6,  b: "9",  b_idx: 1, cap: 3 },
+        // L32: N7  <-> N12
+        { a: "6",  a_idx: 7,  b: "11", b_idx: 3, cap: 3 },
+        // L33: N7  <-> N13
+        { a: "6",  a_idx: 8,  b: "12", b_idx: 3, cap: 3 },
+        // L34: N7  <-> N14
+        { a: "6",  a_idx: 9,  b: "13", b_idx: 0, cap: 3 },
+        // L35: N7  <-> N15
+        { a: "6",  a_idx: 10, b: "14", b_idx: 3, cap: 3 },
+        // L36: N9  <-> N10
+        { a: "8",  a_idx: 2,  b: "9",  b_idx: 2, cap: 3 },
+        // L37: N9  <-> N11
+        { a: "8",  a_idx: 3,  b: "10", b_idx: 2, cap: 3 },
+        // L38: N9  <-> N14
+        { a: "8",  a_idx: 4,  b: "13", b_idx: 1, cap: 3 },
+        // L39: N9  <-> N15
+        { a: "8",  a_idx: 5,  b: "14", b_idx: 4, cap: 3 },
+        // L40: N9  <-> N16
+        { a: "8",  a_idx: 6,  b: "15", b_idx: 0, cap: 3 },
+        // L41: N10 <-> N11
+        { a: "9",  a_idx: 3,  b: "10", b_idx: 3, cap: 3 },
+        // L42: N10 <-> N14
+        { a: "9",  a_idx: 4,  b: "13", b_idx: 2, cap: 3 },
+        // L43: N10 <-> N15
+        { a: "9",  a_idx: 5,  b: "14", b_idx: 5, cap: 3 },
+        // L44: N12 <-> N13
+        { a: "11", a_idx: 4,  b: "12", b_idx: 4, cap: 3 },
+        // L45: N12 <-> N15
+        { a: "11", a_idx: 5,  b: "14", b_idx: 6, cap: 3 },
+        // L46: N13 <-> N14
+        { a: "12", a_idx: 5,  b: "13", b_idx: 3, cap: 3 },
+        // L47: N13 <-> N15
+        { a: "12", a_idx: 6,  b: "14", b_idx: 7, cap: 3 },
+        // L48: N14 <-> N15
+        { a: "13", a_idx: 4,  b: "14", b_idx: 8, cap: 3 },
+        // L49: N14 <-> N16
+        { a: "13", a_idx: 5,  b: "15", b_idx: 1, cap: 3 },
+        // -- added (not from SNDlib) --
+        // L50: pub (node 16) <-> N14 (node 13)
+        { a: "16", a_idx: 0,  b: "13", b_idx: 6, cap: 100 },
+        // L51: sub (node 17) <-> N7  (node 6)
+        { a: "17", a_idx: 0,  b: "6",  b_idx: 11, cap: 100 },
+    ]
+}
