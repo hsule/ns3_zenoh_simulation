@@ -22,8 +22,19 @@ cd ns3_zenoh_simulation
 
 ### 2. Build and enter the development container
 
+You can build the image locally or pull the pre-built image from Docker Hub:
+
 ```bash
+# Option A: Build locally
 ./container/build.sh
+
+# Option B: Pull from Docker Hub
+docker pull leannhsu/zenoh_ns3_sim:latest
+```
+
+Then start the container:
+
+```bash
 ./container/run.sh
 ```
 
